@@ -1,0 +1,11 @@
+@import "tailwindcss";
+@theme{--color-cream:#FAF4EC;--color-sand:#F1E6D8;--color-blush:#F4DAD5;--color-blush-deep:#E4B4AC;--color-brown:#3A2821;--color-brown-soft:#6F5A50;--color-rose:#A8645C;--color-gold:#B98A6A;
+--font-display:'Fraunces',Georgia,serif;--font-body:'Figtree',system-ui,sans-serif;--shadow-soft:0 18px 40px -22px rgba(58,40,33,.35)}
+html{scroll-behavior:smooth}body{background:var(--color-cream);color:var(--color-brown);font-family:var(--font-body);line-height:1.6;overflow-x:hidden}
+h1,h2,h3{font-family:var(--font-display);font-weight:400;letter-spacing:-.01em;line-height:1.1}
+:focus-visible{outline:2px solid var(--color-rose);outline-offset:3px;border-radius:4px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;min-height:44px;padding:.65rem 1.5rem;border-radius:999px;font-weight:500;transition:background .2s,color .2s,opacity .2s}
+.btn-primary{background:var(--color-brown);color:var(--color-cream)}.btn-primary:hover{background:var(--color-rose)}
+.btn-ghost{border:1px solid var(--color-brown)}.btn-ghost:hover{background:var(--color-blush)}
+.btn:disabled{opacity:.45;pointer-events:none}
+.wrap{max-width:72rem;margin:0 auto;padding:0 1.25rem}

@@ -1,0 +1,14 @@
+import {defineType,defineField as f} from 'sanity'
+const slug=s=>f({name:'slug',type:'slug',options:{source:s,maxLength:96},validation:r=>r.required()})
+const photo=(name,title)=>f({name,title,type:'image',options:{hotspot:true}})
+export const schemaTypes=[
+ defineType({name:'category',title:'Category',type:'document',fields:[f({name:'name',type:'string',validation:r=>r.required()}),slug('name'),f({name:'description',type:'text',rows:2}),photo('image','Category image'),f({name:'order',title:'Display order',type:'number'}),f({name:'visible',title:'Show on website',type:'boolean',initialValue:true})],preview:{select:{title:'name',media:'image'}}}),
+ defineType({name:'product',title:'Product',type:'document',fields:[f({name:'name',type:'string',validation:r=>r.required()}),slug('name'),photo('mainImage','Main photo'),f({name:'images',title:'More photos',type:'array',of:[{type:'image',options:{hotspot:true}}]}),
+  f({name:'price',type:'number',description:'Leave empty if the price is not set yet.',validation:r=>r.min(0)}),f({name:'oldPrice',title:'Previous price (only for a real promotion)',type:'number'}),
+  f({name:'short',title:'Short description',type:'text',rows:2}),f({name:'description',title:'Full description',type:'text'}),f({name:'category',type:'reference',to:[{type:'category'}]}),
+  f({name:'available',title:'In stock',type:'boolean',initialValue:true}),f({name:'variants',title:'Sizes or options (optional)',type:'array',of:[{type:'string'}]}),f({name:'details',title:'Product details (bullet points)',type:'array',of:[{type:'string'}]}),
+  f({name:'featured',title:'Feature on homepage',type:'boolean',initialValue:false}),f({name:'order',title:'Display order',type:'number'})],preview:{select:{title:'name',media:'mainImage'}}}),
+ defineType({name:'home',title:'Homepage',type:'document',fields:[f({name:'heroHeading',type:'string'}),f({name:'heroText',type:'text',rows:2}),photo('heroImage','Hero image'),f({name:'ctaText',title:'Button text',type:'string'}),f({name:'ctaLink',title:'Button link (e.g. /shop)',type:'string'}),
+  f({name:'promoText',title:'Promotion text (optional)',type:'text',rows:2}),f({name:'intro',title:'Brand introduction',type:'text'}),f({name:'faqs',title:'FAQ',type:'array',of:[{type:'object',fields:[f({name:'q',title:'Question',type:'string'}),f({name:'a',title:'Answer',type:'text'})],preview:{select:{title:'q'}}}]})]}),
+ defineType({name:'settings',title:'Website settings',type:'document',fields:[f({name:'brand',title:'Brand name',type:'string',initialValue:'Kismart Beauty Products'}),f({name:'about',title:'About page text',type:'text'}),f({name:'phone',type:'string'}),f({name:'email',type:'string'}),f({name:'address',type:'string'}),
+  f({name:'whatsapp',title:'WhatsApp number (country code, digits only)',type:'string'}),f({name:'instagram',type:'url'}),f({name:'facebook',type:'url'}),f({name:'tiktok',type:'url'}),f({name:'footer',title:'Footer text',type:'text',rows:2})]})]
