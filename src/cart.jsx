@@ -18,3 +18,5 @@ export function CartProvider({children}){
  const count=items.reduce((a,i)=>a+i.qty,0)
  return <C.Provider value={{lines,ok,total,count,add,setQty}}>{children}</C.Provider>
 }
+
+
